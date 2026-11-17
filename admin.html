@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- basic setting of webpage-->
+         <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+         <!-- title-->
+        <title> Admin Dashboard - MediBridge</title>
+        <!--linking our custom CSS stylesheet-->
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <!--navigation bar-->
+        <header>
+            <nav class="navbar">
+                <!--logo-->
+                <a href="index.html" class="logo">Medi<span>Bridge</span></a>
+
+                <!--Menu navigation link-->
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="browse.html">Browse</a></li>
+                    <li><a href="add-medicine.html">Donate</a></li>
+                    <li><a href="request.html">Requests</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html" class="nav-btn">Login</a></li>
+                    <li><a href="admin.html" class="active" style="color: var(--accent); font-weight: 700;">Admin</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!--admin header banner-->
+        <section class="page-header" style="text-align: center; padding: 40px 20px; background-color: var(--primary-dark); color: var(--white);">
+            <div style="max-width: 700px; margin: 0 auto;">
+                <h1 style="font-size: 28px; margin-bottom: 8px;">🛡️ MediBridge Admin Dashboard</h1>
+                <p style="font-size: 15px; opacity: 0.9;">Manage medicine approvals, review safety reports, and monitor platform activity.</p>
+            </div>
+        </section>
+
+        <!--admin stats summary cards-->
+        <section class="section" style="padding: 30px 20px 10px;">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+
+                    <!--card 1: pending approvals-->
+                    <div style="flex: 1 1 220px; max-width:280px; background: var(--white); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,0.04); text-align: center;">
+                        <div style="font-size: 14px; color: var(--text-light); font-weight: 600;">PENDING APPROVALS</div>
+                        <div id="adminPendingCount" style="font-size: 36px; font-weight: 700; color: var(--secondary); margin: 8px 0;">0</div>
+                        <p style="font-size: 12px; color: var(--text-light); margin: 0;">Medicines waiting for review</p>
+                    </div>
+
+                     <!--card 2: active listing-->
+                    <div style="flex: 1 1 220px; max-width:280px; background: var(--white); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,0.04); text-align: center;">
+                        <div style="font-size: 14px; color: var(--text-light); font-weight: 600;">ACTIVE LISTINGS</div>
+                        <div id="adminActiveCount" style="font-size: 36px; font-weight: 700; color: var(--secondary); margin: 8px 0;">0</div>
+                        <p style="font-size: 12px; color: var(--text-light); margin: 0;">live on browse page</p>
+                    </div>
+
+                     <!--card 3: reported listings-->
+                    <div style="flex: 1 1 220px; max-width:280px; background: var(--white); padding: 20px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,0.04); text-align: center;">
+                        <div style="font-size: 14px; color: var(--text-light); font-weight: 600;">REPORTED / FLAGGED</div>
+                        <div id="adminReportedCount" style="font-size: 36px; font-weight: 700; color: var(--secondary); margin: 8px 0;">0</div>
+                        <p style="font-size: 12px; color: var(--text-light); margin: 0;">Flagged for verification</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--pending approvals section-->
+        <section class="section" style="padding: 30px 20px;">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="font-size: 22px; color: var(--text-dark);">Pending donations Review</h2>
+                    <span class="badge" style="background: var(--secondary); color: var(--white); padding: 4px 12px; border-radius: 20px; font-size: 12px;">Needs Action</span>
+                </div>
+
+                <!--pending container for js loading items-->
+                <div id="adminPendingContainer" style="display: flex; flex-direction: column; gap: 16px;">
+                </div>
+            </div>
+        </section>
+        <!-- active listings management section -->
+        <section class="section" style="padding: 10px 20px 30px;">
+            <div style="max-width: 1000px; margin: 0 auto;">
+               <h2 style="font-size: 22px; color: var(--text-dark); margin-bottom: 20px;">Manage Live / Active Listings</h2>
+        
+                <!-- Active listings container loaded dynamically by JS -->
+                <div id="adminActiveContainer" style="display: flex; flex-direction: column; gap: 16px;"></div>
+            </div>
+        </section>
+
+        <!--management section: active listings-->
+        <section class="section" style="padding: 10px 20px 50px;">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <h2 style="font-size: 22px; color: var(--text-dark); margin-bottom: 20px;">Platform Safety Controls</h2>
+                <div style="background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px;">
+                    <h3 style="font-size: 16px; color: var(--primary-dark); margin-bottom: 10px;">Guidelines for Admin Approval</h3>
+                    <ul style="font-size: 14px; color: var(--text-light); line-height: 1.8; padding-left: 20px; margin: 0;">
+                        <li>Ensure packaging photos clearly show medicine name and brand.</li>
+                        <li>Reject listing if the expiry date is past or missing.</li>
+                        <li>Reject any prescription-only controlled substances listed without doctor documentation.</li>
+                        <li>Immediately remove listings reported by users for fake contact information.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!--footer-->
+        <footer>
+            <div class="footer-content">
+
+                <!--Brand column-->
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="color: var(--white);">Medi<span style="color: var(--accent);">Bridge</span></a>
+                    <p>
+                        A community-driven medicine exchange initiative.
+                        Connecting surplus medicines to people who need them most. 
+                    </p>
+                </div>
+
+                <!--quik links-->
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="browse.html">Browse Medicines</a></li>
+                        <li><a href="add-medicine.html">Donate Medicines</a></li>
+                        <li><a href="request.html">Request Board</a></li>
+                    </ul>
+                </div>
+
+                <!--Guidelines and policy links-->
+                <div class="footer-links">
+                    <h4>Guidelines</h4>
+                    <ul>
+                        <li><a href="about.html">Safety Guidelines</a></li>
+                        <li><a href="about.html">Disclaimer</a></li>
+                        <li><a href="about.html">Project Mission</a></li>
+                        <li><a href="login.html">Member Login</a></li>
+                    </ul>
+                </div>
+
+                <!--contact and support-->
+                <div class="footer-links">
+                    <h4>Contact & Support</h4>
+                    <ul>
+                        <li><a href="mailto:support@medibridge.org">support@medibridge.org</a></li>
+                        <li><a href="#">Gandhinagar, Gujarat</a></li>
+                        <li><a href="#">Help & FAQs</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!--bottom bar-->
+            <div class="footer-bottom">
+                <p>© 2026 MediBridge. All rights reserved. | ⚠️ Always consult a certified doctor before consuming any medicines. </p>
+            </div>
+        </footer>
+
+        <!--linkimg javascript file for live counters and interactive features-->
+        <script src="js/main.js"></script>
+    </body>    
+</html>

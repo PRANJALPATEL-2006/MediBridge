@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Board - MediBridge</title>
+
+    <!--linking custom stylesheet-->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <!--navigation bar-->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">Medi<span>Bridge</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="add-medicine.html">Donate</a></li>
+                <li><a href="request.html" style="color: var(--primary);">Requests</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" class="nav-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--page header banner-->
+    <section class="page-header">
+        <h1>Medicine Request Board 📢</h1>
+        <p>Can't find what you need? Post a request </p>
+    </section>
+
+    <!--request form section-->
+    <section class="section" style="padding-bottom: 20px;">
+
+        <div class="form-container">
+            <h2 class="form-title">Post a Medicine Request</h2>
+            <p class="form-subtitle">Fill in the details below. Donors in your city will reach out if they have it.</p>
+
+            <!--success alert banner-->
+            <div class="alert alert-success" id="requestSuccessAlert">
+                ✅ Request posted successfully! It is now visible on the request board below.
+            </div>
+
+            <!--error alert banner-->
+            <div class="alert alert-error" id="requestErrorAlert">
+                ❌ Please fill in all required fields marked with (*).
+            </div>
+
+            <!--request form-->
+            <form id="requestForm">
+
+                <!--medicine name-->
+                <div class="form-group">
+                    <label>Medicine Name Needed *</label>
+                    <input
+                        type="text"
+                        id="reqMedicineName"
+                        placeholder="e.g. Insulin Injection, Paracetamol"
+                        required
+                    />
+                </div>
+
+                <!--urgency & city-->
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Urgency Level *</label>
+                        <select id="reqUrgency" required>
+                            <option value="">Select Urgency</option>
+                            <option value="low">Low - Needed within 2 weeks</option>
+                            <option value="medium">Medium - Needed within 3 days</option>
+                            <option value="high">High - Urgent / Immediate</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your City / Area *</label>
+                        <input
+                            type="text"
+                            id="reqCity"
+                            placeholder="e.g. Gandhinagar, Gujarat"
+                            required
+                        />
+                    </div>
+                </div>
+
+                <!-- Contact Phone-->
+                <div class="form-group">
+                    <label>Contact Phone Number / WhatsApp *</label>
+                    <input
+                        type="tel"
+                        id="reqContact"
+                        placeholder="e.g. +91 98765 43210"
+                        required
+                    />
+                </div>
+
+                <!--request prescription upload-->
+                <div class="form-group">
+                    <label style="color: #C0392B;">Doctor's Prescription Copy *</label>
+                    <p style="font-size: 12px; color: var(--text-light); margin-bottom: 8px;">
+                        For safety please upload a clear photo of a valid doctor's prescription for the requested medicine.
+                    </p>
+
+                    <!--file input-->
+                    <input
+                        type="file"
+                        id="reqPrescriptionPhoto"
+                        accept="image/*"
+                        style="display: none;"
+                    />
+                    
+                    <!--custom button-->
+                    <label for="reqPrescriptionPhoto" class="btn btn-outline" style="cursor: pointer; text-align: center; width: 100%; border-color: #D98880; color: #C0392B;">
+                        📋 Upload Doctor's Prescription Photo *
+                    </label>
+                </div>
+
+                <!--live preview-->
+                <div id="reqPhotoPreviewContainer" style="margin-top: 10px;"></div>
+            
+
+                <!--Description / reason-->
+                <div class="form-group">
+                    <label>Additional Notes / Patient Condition (Optional)</label>
+                    <textarea
+                        id="reqDescription"
+                        placeholder="e.g. Needed for an elderly patient, prescription copy available..."
+                        ></textarea>
+                </div>
+                <!--submit button-->
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width: 100%; font-size: 15px; margin-top: 10px;"
+                >
+                    Post Request ->
+                </button>
+
+            </form>
+        </div>
+
+    </section>
+
+    <!--Dynamic Active Request board-->
+    <section class="section" style="padding-top: 10px;">
+
+        <h2 class="section-title">Active Requests</h2>
+        <p class="section-subtitle">Community members looking for medicines right now</p>
+
+        <!--dynamic container for javaScript to render cards-->
+        <div class="cards-container" id="requestsContainer">
+        </div>
+
+        <!--message shown when no active request are on bored-->
+        <div id="noRequestsMessage" style="text-align: center; padding: 40px 20px;">
+            <div style="font-size: 50px; margin-bottom: 12px;">📋</div>
+            <h3 style="color: var(--text-dark); margin-bottom: 8px;">No Active Requests</h3>
+            <p style="color: var(--text-light); margin-bottom: 20px; font-size: 14px;">
+                Currently, there are no open medicine requests posted.
+            </p>
+        </div>
+    </section>
+
+    <!--footer-->
+    <footer>
+        <div class="footer-content">
+
+            <!--brand column-->
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="color: var(--white);">Medi<span style="color: var(--accent);">Bridge</span></a>
+                <p>
+                    A community-driven medicine exchange initiative.
+                    Connecting surplus medicines to people who need them most.
+                </p>
+            </div>
+
+            <!--navigation links-->
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="browse.html">Browse Medicines</a></li>
+                    <li><a href="add-medicine.html">Donate Medicine</a></li>
+                    <li><a href="request.html">Request Board</a></li>
+                </ul>
+            </div>
+
+            <!--guidelines links-->
+            <div class="footer-links">
+                <h4>Guidelines</h4>
+                <ul>
+                    <li><a href="about.html">Safety Guidelines</a></li>
+                    <li><a href="about.html">Disclaimer</a></li>
+                    <li><a href="about.html">Our Mission</a></li>
+                    <li><a href="login.html">Member Login</a></li>
+                </ul>
+            </div>
+
+            <!--contact & support-->
+            <div class="footer-links">
+                <h4>Contact & Support</h4>
+                <ul>
+                    <li><a href="mailto:support@medibridge.org">support@medibridge.org</a></li>
+                    <li><a href="#">Gandhinagar, Gujarat</a></li>
+                    <li><a href="#">Help & FAQs</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!--footer bottom bar-->
+        <div class="footer-bottom">
+            <p>&copy; 2026 MediBridge. All rights reserved. | ⚠️ Always consult a certified doctor before consuming any medicines.</p>
+        </div>
+    </footer>
+
+    <!--linking javascript file-->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

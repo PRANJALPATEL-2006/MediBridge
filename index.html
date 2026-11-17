@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- basic setting of webpage-->
+         <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+         <!-- title-->
+        <title> MediBridge - Connecting Unused Medicines</title>
+        <!--linking our custom CSS stylesheet-->
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <!--navigation bar-->
+        <header>
+            <nav class="navbar">
+                <!--logo-->
+                <a href="index.html" class="logo">Medi<span>Bridge</span></a>
+
+                <!--Menu navigation link-->
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="browse.html">Browse</a></li>
+                    <li><a href="add-medicine.html">Donate</a></li>
+                    <li><a href="request.html">Requests</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html" class="nav-btn">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!--hero section-->
+        <section class="hero">
+            <h1>Share Unused Medicines,<br />Save Lives 🌿 </h1>
+            <p>
+                MediBridge bridges the gap between surplus medicines and the people in need.
+                Together, let's reduce medical waste and build a healthier community.
+            </p>
+
+            <!--action buttons-->
+            <div class="hero-buttons">
+                <a href="browse.html" class="btn-white">Browse Medicine</a>
+                <a href="add-medicine.html" class="btn-outline-white">Donate Medicine</a>
+            </div>
+        </section>
+
+        <!--stats section-->
+        <section class="stats">
+            <div class="stat-item">
+                <!--added id="stat-medicines"-->
+                <h2 id="stat-medicines">0</h2>
+                <p>Medicines Listed</p>
+            </div>
+            
+            <div class="stat-item">
+                <!--added id="stat-helped"-->
+                <h2 id="stat-helped">0</h2>
+                <p>Requests Posted</p>
+            </div>
+
+            <div class="stat-item">
+                <!--added id="stat-cities"-->
+                <h2 id="stat-cities">0</h2>
+                <p>Active Cities</p>
+            </div>
+        </section>
+
+        <!--imp disclaimer banner-->
+        <section style="padding: 20px 40px; background-color: var(--bg);">
+            <div class="disclaimer">
+               ⚠️ <strong> Safety Disclaimer:</strong> MediBridge is an academic platform facilitating non-commercial medicine donations. We are <strong>not</strong> a pharmacy. Please consult a registered doctor before using any medicine. Prescription(Schedule H/H1) medicines require verified doctor prescriptions.
+            </div>
+        </section>
+
+        <!--how it works section-->
+        <section class="section">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">A simple four-step process to donate or receive medicines</p>
+
+            <div class="steps-container">
+                
+                <!--step 1-->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📝</div>
+                    <h3>Create Account</h3>
+                    <p>Register with your basic contact details and city location.</p>
+                </div>
+
+                <!--step 2-->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">💊</div>
+                    <h3>List Medicines</h3>
+                    <p>Add unused medicines with verified expiry date and condition.</p>
+                </div>
+
+                <!--step 3-->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">🔍</div>
+                    <h3>Find Matches</h3>
+                    <p>Nearby recipients or donors connect based on medicine requests.</p>
+                </div>
+
+                <!--step 4-->
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🫱🏻‍🫲🏻</div>
+                    <h3>Safe Handover</h3>
+                    <p>Exchange medicines in original sealed condition responsibly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!--why choose medibridge-->
+        <section class="section" style="background-color: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+            <h2 class="section-title">Why MediBridge</h2>
+            <p class="section-subtitle">Solving medical wastage with social responsibility</p>
+            
+            <div class="steps-container">
+
+                <!--Card 1-->
+                <div class="step-card">
+                    <div class="step-icon">🌱</div>
+                    <h3>Eco-Friendly</h3>
+                    <p>Reduces chemical and pharmaceutical pollution by preventing disposal of valid medicines.</p>
+                </div>
+
+                <!--card 2-->
+                <div class="step-card">
+                    <div class="step-icon">🫂</div>
+                    <h3>Direct Connect</h3>
+                    <p>Connect directly with local donors and seekers to coordinate handover terms smoothly.</p>
+                </div>
+
+                <!--Card 3-->
+                <div class="step-card">
+                    <div class="step-icon">🛡️</div>
+                    <h3>Date Tracking</h3>
+                    <p>Smart traffic-light expiry indicators ensure only safe, valid medicines are exchanged.</p>
+                </div>
+
+                <!--Card 4-->
+                <div class="step-card">
+                    <div class="step-icon">❤️</div>
+                    <h3>Community Care</h3>
+                    <p>Brings local neighborhoods together to support patients with essential supplies.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Call to action (cta) banner-->
+        <section class="section" style="background-color: var(--primary) ; text-align: center; color: var(--white) ;">
+           <h2 style="font-size: 30px; font-weight: 700; margin-bottom: 12px;">READY TO MAKE AN IMPACT?</h2>
+           <p style="font-size: 16px; opacity: 0.9; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto;">
+            Join MediBridge today. Your unused medicine could help someone in your neighborhood.
+           </p>
+           <a href="register.html" class="btn-white">Create Free Account -> </a>
+        </section>
+
+        <!--footer-->
+        <footer>
+            <div class="footer-content">
+
+                <!--Brand column-->
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="color: var(--white);">Medi<span style="color: var(--accent);">Bridge</span></a>
+                    <p>
+                        A community-driven medicine exchange initiative.
+                        Connecting surplus medicines to people who need them most. 
+                    </p>
+                </div>
+
+                <!--quik links-->
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="browse.html">Browse Medicines</a></li>
+                        <li><a href="add-medicine.html">Donate Medicines</a></li>
+                        <li><a href="request.html">Request Board</a></li>
+                    </ul>
+                </div>
+
+                <!--Guidelines and policy links-->
+                <div class="footer-links">
+                    <h4>Guidelines</h4>
+                    <ul>
+                        <li><a href="about.html">Safety Guidelines</a></li>
+                        <li><a href="about.html">Disclaimer</a></li>
+                        <li><a href="about.html">Project Mission</a></li>
+                        <li><a href="login.html">Member Login</a></li>
+                    </ul>
+                </div>
+
+                <!--contact and support-->
+                <div class="footer-links">
+                    <h4>Contact & Support</h4>
+                    <ul>
+                        <li><a href="mailto:support@medibridge.org">support@medibridge.org</a></li>
+                        <li><a href="#">Gandhinagar,Gujarat</a></li>
+                        <li><a href="#">Help & FAQs</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!--bottom bar-->
+            <div class="footer-bottom">
+                <p>© 2026 MediBridge. All rights reserved. | ⚠️ Always consult a certified doctor before consuming any medicines. </p>
+            </div>
+        </footer>
+
+        <!--linkimg javascript file for live counters and interactive features-->
+        <script src="js/main.js"></script>
+    </body>
+</html>

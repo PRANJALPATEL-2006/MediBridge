@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Donate Medicine - MediBridge</title>
+
+    <!--linking custom stylesheet-->
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+    <!--navigation bar-->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">Medi<span>Bridge</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="browse.html">Browse</a></li>
+                <li><a href="add-medicine.html" style="color: var(--primary);">Donate</a></li>
+                <li><a href="request.html">Requests</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" class="nav-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--page heaader banner-->
+    <section class="page-header">
+        <h1>Donate Unused Medicine 💊</h1>
+        <p>List your unexpired medicine and help someone in your community</p>
+    </section>
+
+    <!--donation form section-->
+    <section class="section">
+
+        <!--pre-donation safety guidelines-->
+        <div class="disclaimer" style="max-width: 580px; margin: 0 auto 24px;">
+            ⚠️ <strong>Donation Guidelines:</strong>
+            Please ensure the medicine is <strong>not expired</strong> and has been stored properly.
+            Do not donate medicine with broken seals, unreadable labels, or tampered packaging.
+        </div>
+
+        <!--main form container-->
+        <div class="form-container">
+            <h2 class="form-title">Medicine Details</h2>
+            <p class="form-subtitle">Fill in the details below to list your medicine.</p>
+
+            <!--success alert banner (hidden by default)-->
+            <div class="alert alert-success" id="successAlert">
+                ✅ Medicine listed successfully! Redirecting to Browse page....
+            </div>
+
+            <!--error alert banner (hidden by default)-->
+            <div class="alert alert-error" id="errorAlert">
+                ❌ Please review your inputs and ensure all reqired fields (*) are filled correctly.
+            </div>
+
+            <!--medicine form-->
+            <form id="addMedicineForm">
+
+                <!--medicine photo upload-->
+                <div class="form-group">
+                    <label>Medicine Packaging Photo *</label>
+                    <p style="font-size: 12px; color: var(--text-light); margin-bottom: 8px;">
+                       Please upload a clear photo showing the medicine name and strip/box.
+                    </p>
+
+                  <!-- Hidden file input (NO 'required' attribute here!) -->
+                  <input 
+                  type="file" 
+                  id="medicinePhoto" 
+                  accept="image/*" 
+                  style="display: none;" 
+                  />
+
+                 <!-- Custom upload button connected via 'for' attribute -->
+                  <label 
+                  for="medicinePhoto" 
+                  class="btn btn-secondary" 
+                  style="display: inline-block; cursor: pointer; text-align: center;"
+                  >
+                     📷 Choose Photo
+                    </label>
+
+                   <!-- Live Preview Container where image will appear -->
+                    <div 
+                       id="photoPreviewContainer" 
+                       style="margin-top: 10px; width: 100%; min-height: 50px;"
+                    ></div>
+                </div>
+                <!--medicine name and strength-->
+                <div class="form-group">
+                    <label>Medicine Name & Strength *</label>
+                    <input 
+                        type="text"
+                        id="medicineName"
+                        placeholder="e.g. Paracetamol 500mg, Dolo 650"
+                        required
+                    />
+                    <span class="error-msg" id="nameError">Please enter medicine name</span>
+                </div>
+
+                <!--category & quantity (2 columns)-->
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="OTC">OTC (Over The Counter)</option>
+                            <option value="Prescription">Prescription Required</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantity *</label>
+                        <input 
+                            type="text"
+                            id="quantity"
+                            placeholder="e.g. 10 Tablets, 1 Bottle"
+                            required
+                        />    
+                    </div>
+                </div>
+
+                <!--expiriy date & condition (2 columns)-->
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Expiry Date *</label>
+                        <input
+                           type="date"
+                           id="expiryDate"
+                           required
+                        />   
+                    </div>
+
+                    <div class="form-group">
+                        <label>Condition *</label>
+                        <select id="condition">
+                            <option value="Sealed Pack">Sealed Original Box</option>
+                            <option value="Sealed Strip">Intact Sealed Strip</option>
+                            <option value="Opened Bottle">Opened but Unused Bottle</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!--Dynamic expiry status preview box-->
+                <div class="form-group">
+                    <label>Expiry Safety Check</label>
+                    <div 
+                        id="expiryStatus"
+                        style="padding: 10px 14px; border-radius: 12px; background: var(--bg); font-size: 13px; color: var(--text-light); border: 1px solid var(--border);">
+                            Select an expiry date above to check safety status
+                    </div>
+                </div>
+
+                <!--location-->
+                <div class="form-group">
+                    <label>Your City/ Area *</label>
+                    <input 
+                        type="text"
+                        id="city"
+                        placeholder="e.g. Gandhinagar, Gujarat"
+                        required
+                    />    
+                </div>
+
+                <!--Contact no.-->
+                <div class="form-group">
+                    <label>Contact Number *</label>
+                    <input 
+                        type="tel"
+                        id="contact"
+                        placeholder="e.g +91 548630 59361"
+                        required
+                    />    
+                </div>
+
+                <!--storage/additional notes-->
+                <div class="form-group">
+                    <label>Storage/ Usage Notes </label>
+                    <textarea 
+                         id="description"
+                         placeholder="e.g. Stored in a cool dry place, original strip intact...."></textarea>
+                </div>
+
+                <!--submit button-->
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width: 100%; font-size: 15px; margin-top: 10px;"
+                >
+                  Submit Medicine Listing ->
+                </button>    
+                
+            </form>
+        </div>
+    </section>
+
+    <!-- footer-->
+    <footer>
+      <div class="footer-content">
+    
+
+       <!--brand column-->  
+        <div class="footer-brand">
+         <a href="index.html" class="logo" style="color: var(--white);">Medi<span style="color: var(--accent);">Bridge</span></a>
+         <p>
+            A community-driven medicine exchange initiative.
+            Connecting surplus medicines to people who need them most.
+         </p>
+        </div>  
+
+       <!--navigation link-->
+       <div class="footer-links">
+         <h4>Navigation</h4>
+         <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="browse.html">Browse Medicines</a></li>
+            <li><a href="add-medicine.html">Donate Medicines</a></li>
+            <li><a href="request.html">Request Board</a></li>
+         </ul>
+        </div>
+
+       <!--guidelines links-->
+       <div class="footer-links">
+         <h4>Guidelines</h4>
+         <ul>
+            <li><a href="about.html">Safety Guidelines</a></li>
+            <li><a href="about.html">Disclaimer</a></li>
+            <li><a href="about.html">Our Mission</a></li>
+            <li><a href="login.html">Member Login</a></li>
+         </ul>
+       </div>
+
+       <!--contact & support-->
+        <div class="footer-links">
+         <h4>Contact & Support</h4>
+         <ul>
+            <li><a href="mailto:support@medibridge.org">support@medibridge.org</a></li>
+            <li><a href="#">Gandhinagar, Gujarat</a></li>
+            <li><a href="#">Help & FAQs</a></li>
+         </ul>
+        </div>
+     </div>
+
+     <!--footer bottom bar-->
+     <div class="footer-bottom">
+        <p>&copy; 2026 MediBridge. All rights reserved. | ⚠️ Always consult a certified doctor before consuming any medicines.
+        </p>
+     </div>
+    </footer>
+
+    <!--linking javascript file-->
+    <script src="js/main.js"></script>
+</body>
+</html>

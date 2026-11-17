@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Browse Medicine - MediBridge</title>
+
+    <!--linking custom styling-->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!--navigation bar-->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">Medi<span>Bridge</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="browse.html" style="color: var(--primary);">Browse</a></li>
+                <li><a href="add-medicine.html">Donate</a></li>
+                <li><a href="request.html">Request</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" class="nav-btn">login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--page header banner-->
+    <section class="page-header">
+        <h1>Browse Available Medicine 💊</h1>
+        <p>Search verified listing donated by people in your area</p>
+    </section>
+
+    <!--search & filter tool bar-->
+    <section class="search-bar">
+        <!--live search input field-->
+        <input
+           type="text"
+           class="search-input"
+           id="searchInput"
+           placeholder="🔍 Search medicine name or city..."
+        />
+
+        <!--filter by medicine type-->
+        <select class="filter-select" id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="OTC">OTC (Over The Counter)</option>
+            <option value="Prescription">Prescription Required</option>
+        </select>
+
+        <!--filter by expiriy safety level-->
+        <select class="filter-select" id="expiryFilter">
+            <option value="all">All Expiriy Status</option>
+            <option value="green">Safe (6+ months)</option>
+            <option value="yellow">Use Soon (3-6 months)</option>
+            <option value="red">Urgent (Under 3 months)</option>
+        </select> 
+
+        <button class="btn btn-primary" onclick="filterMedicines()">Filter</button>
+    </section>
+
+    <!--safety Reminder Note-->
+    <div style="padding: 15px 40px;">
+        <div class="disclaimer">
+            ⚠️ <strong>Safety Reminder:</strong>Always verify packaging seals upon collection.
+            Prescription medicines (Schedule H/H1) strictly require a valid doctor's prescription.
+        </div>
+    </div>
+    
+    <!--medicine cards grid-->
+    <section class="section" style="padding-top: 10px;">
+        <!--live count counter text-->
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 25px;">
+            Showing<strong id="medicineCount" style="color: var(--primary);"> 0 </strong>medicines available
+        </p>
+
+        <!--empty container- javascript will fill this later-->
+        <div class="cards-container" id="medicinesContainer">
+        </div>
+
+        <!--message shown when no medicine are listed-->
+        <div id="noMedicinesMessage" style="text-align: center; padding: 50px 20px;">
+            <div style="font-size: 50px; margin-bottom:12px;">📦</div>
+            <h3 style="color: var(--text-dark); margin-bottom: 8px;">No Medicine Listed Yet</h3>
+            <p style="color: var(--text-light); margin-bottom: 20px; font-size: 14px;">
+                Be the first person in your community to donate!
+            </p>
+            <a href="add-medicine.html" class="btn btn-primary">Donate Medicine Now -></a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="color: var(--white);">Medi<span style="color: var(--accent);">Bridge</span></a>
+                <p>
+                    Acommunity-driven medicine exchange initiative.
+                    Connecting surplus medicines to people who need them most.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="browse.html">Browse Medicines</a></li>
+                    <li><a href="add-medicine.html">Donate Medicines</a></li>
+                    <li><a href="request.html">Request Board</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Guidelines</h4>
+                <ul>
+                     <li><a href="about.html">Saftey Guidelines</a></li>
+                     <li><a href="about.html">Disclaimer</a></li>
+                     <li><a href="about.html">Our Mission</a></li>
+                     <li><a href="login.html">Member Login</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact & Support</h4>
+                <ul>
+                    <li><a href="mailto:support@medibridge.org">support@medibridge.org</a></li>
+                    <li><a href="#">Gandhinagar, Gujarat</a></li>
+                    <li><a href="#">Help & FAQs</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 MediBridge. All rights reserved. |⚠️ Always consult a certified doctor before consuming any medicines. </p>
+        </div>
+    </footer>
+
+    <!--link javascript for live search and filtering-->
+    <script src="js/main.js"></script>
+</body>
+</html>
